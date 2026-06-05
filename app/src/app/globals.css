@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+:root {
+  --background: #faf7f2;
+  --foreground: #2d2822;
+
+  /* Parchment palette */
+  --parch-bg:      #faf7f2;
+  --parch-surface: #fffefb;
+  --parch-border:  #e4ddd0;
+  --parch-border-mid: #c4b8a8;
+  --parch-brown:   #7c5c3b;
+  --parch-dark:    #4a3422;
+  --parch-text:    #2d2822;
+  --parch-muted:   #7c6a58;
+  --parch-hint:    #a88b72;
+  --parch-warm:    #f0e8da;
+
+  /* Plum accent */
+  --plum:          #5c2d6e;
+  --plum-hover:    #7a3d8f;
+  --plum-light:    #f0e8f5;
+  --plum-border:   #c4a8d4;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans, 'Inter', system-ui, sans-serif);
+  --font-serif: var(--font-serif, 'Playfair Display', Georgia, serif);
+  --font-mono: 'Menlo', 'Monaco', 'Courier New', monospace;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* Utility classes for the two font stacks */
+.font-display {
+  font-family: var(--font-serif);
+}
+
+.font-body {
+  font-family: var(--font-sans);
+}
+
+/* ── Dodo running animation ──────────────────────────────────
+   Body sways gently around centre of mass.
+   Legs stride forward/back from hip joints.
+   0.6s linear = smooth constant-speed run, no bounce.
+   transform-box: view-box + percentage origins = scale-safe.
+────────────────────────────────────────────────────────────── */
+@keyframes dodo-sway {
+  0%, 100% { transform: rotate(-1.5deg); }
+  50%       { transform: rotate(1.5deg); }
+}
+@keyframes dodo-leg-l {
+  0%, 100% { transform: rotate(-32deg); }
+  50%      { transform: rotate(28deg); }
+}
+@keyframes dodo-leg-r {
+  0%, 100% { transform: rotate(28deg); }
+  50%      { transform: rotate(-32deg); }
+}
+
+.dodo-running {
+  animation: dodo-sway 0.6s linear infinite;
+  transform-box: view-box;
+  transform-origin: 50% 63.6%;
+  display: block;
+}
+.dodo-running .dodo-leg-l {
+  animation: dodo-leg-l 0.6s ease-in-out infinite;
+  transform-box: view-box;
+  transform-origin: 43.2% 84.1%;
+}
+.dodo-running .dodo-leg-r {
+  animation: dodo-leg-r 0.6s ease-in-out infinite;
+  animation-delay: 0.3s;
+  transform-box: view-box;
+  transform-origin: 56.8% 84.1%;
+}
